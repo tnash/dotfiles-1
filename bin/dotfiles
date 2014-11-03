@@ -215,8 +215,23 @@ function link_test() {
   [[ "$1" -ef "$2" ]] && echo "same file"
 }
 function link_do() {
-  e_success "Linking ~/$1."
-  ln -sf ${2#$HOME/} ~/
+  # Can we symlink the current file/directory?
+  if [ -e "$HOME/$1" ] && [ ! -L "$HOME/$1" ]; then
+    # Directory already exists, try to symlink children
+    if [ -d "$2" ]; then
+      local files=("$2"/*)
+      for file in "${files[@]}"; do
+        link_do "${file#$DOTFILES/link/}" "$file"
+      done
+    fi
+  else
+    if [[ "$2" -ef "$HOME/${2#$DOTFILES/link/}" ]]; then
+      e_error "Skipping ~/$1, same file"
+    else
+      e_success "Linking ~/$1"
+      ln -sf "$2" "$HOME/${2#$DOTFILES/link/}"
+    fi
+  fi
 }
 
 # Copy, link, init, etc.
@@ -241,7 +256,7 @@ function do_stuff() {
         continue
       fi
       # Destination file already exists in ~/. Back it up!
-      if [[ -e "$dest" ]]; then
+      if [[ -e "$dest" ]] && [ -f "$dest" ]; then
         e_arrow "Backing up ~/$base."
         # Set backup flag, so a nice message can be shown at the end.
         backup=1
