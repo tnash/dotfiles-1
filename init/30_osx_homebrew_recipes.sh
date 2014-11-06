@@ -7,6 +7,8 @@ is_osx || return 1
 # Homebrew recipes
 recipes=(
   bash
+  dnsmasq
+  duti
   git
   git-extras
   htop-osx
@@ -14,6 +16,7 @@ recipes=(
   id3tool
   lesspipe
   nmap
+  npm
   ssh-copy-id
   the_silver_searcher
   tree
