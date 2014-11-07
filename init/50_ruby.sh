@@ -14,3 +14,7 @@ if [[ "$(type -P rbenv)" ]]; then
     done
   fi
 fi
+
+# Install gems
+gem install bundler
+gem install ffi
