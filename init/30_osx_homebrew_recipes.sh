@@ -4,6 +4,13 @@ is_osx || return 1
 # Exit if Homebrew is not installed.
 [[ ! "$(type -P brew)" ]] && e_error "Brew recipes need Homebrew to install." && return 1
 
+kegs=(
+  homebrew/dupes
+  homebrew/apache
+  homebrew/php
+)
+brew_tap_kegs
+
 # Homebrew recipes
 recipes=(
   bash
@@ -12,14 +19,22 @@ recipes=(
   git
   git-extras
   htop-osx
+  httpd24
   hub
+  icdiff
   id3tool
   lesspipe
+  mysql
   nmap
   npm
+  pandoc
+  php56
+  composer
   ssh-copy-id
   the_silver_searcher
+  tmux
   tree
+  wget
 )
 
 brew_install_recipes

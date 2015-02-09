@@ -23,6 +23,7 @@ brew cask info this-is-somewhat-annoying 2>/dev/null
 casks=(
   # Applications
   a-better-finder-rename
+  alfred
   bettertouchtool
   charles
   cyberduck
@@ -36,8 +37,6 @@ casks=(
   hex-fiend
   imageoptim
   istat-menus
-  iterm2
-  jenkins-menu
   launchbar
   macvim
   mongohub
