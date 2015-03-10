@@ -17,3 +17,4 @@ fi
 
 # Install gems
 gem install bundler
+gem install builder
