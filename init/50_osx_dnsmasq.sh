@@ -10,9 +10,6 @@ is_osx || return 1
 # Symlink the config
 ln -sf $DOTFILES/conf/osx/dnsmasq/dnsmasq.conf $(brew --prefix)/etc/dnsmasq.conf
 
-# Start dnsmasq at startup
-sudo cp -fv $(brew --prefix dnsmasq)/*.plist ~/Library/LaunchAgents
-sudo chown root ~/Library/LaunchAgents/homebrew.mxcl.dnsmasq.plist
-
-# Start now
-sudo launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.dnsmasq.plist
+# Create launch daemon and start dnsmasq
+[ -f $(brew --prefix dnsmasq)/homebrew.mxcl.dnsmasq.plist ] && sudo ln -sfv $(brew --prefix dnsmasq)/homebrew.mxcl.dnsmasq.plist /Library/LaunchDaemons/
+[ -e /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist ] && sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
