@@ -4,14 +4,12 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-	<string>com.flat9.btt.plist</string>
+	<string>com.flat9.btt</string>
     <key>ProgramArguments</key>
 	<array>
-	    <string>open /Users/stephenroberts/Applications/BetterTouchTool.app</string>
+	    <string>/Users/stephenroberts/Applications/BetterTouchTool.app/Contents/MacOS/BetterTouchTool</string>
 	</array>
     <key>RunAtLoad</key>
-	<true/>
-    <key>KeepAlive</key>
 	<true/>
 </dict>
 </plist>

@@ -4,14 +4,12 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-	<string>com.flat9.alfred2.plist</string>
+	<string>com.flat9.alfred2</string>
     <key>ProgramArguments</key>
 	<array>
 	    <string>/Users/stephenroberts/Applications/Alfred 2.app/Contents/MacOS/Alfred 2</string>
 	</array>
     <key>RunAtLoad</key>
-	<true/>
-    <key>KeepAlive</key>
 	<true/>
 </dict>
 </plist>
