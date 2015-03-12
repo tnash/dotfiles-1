@@ -18,4 +18,5 @@ sudo ln -sf $DOTFILES/conf/osx/httpd/httpd-vhosts.conf $(brew --prefix)/etc/apac
 # Create launch agent and start httpd
 # http://echo.co/blog/os-x-109-local-development-environment-apache-php-and-mysql-homebrew
 [ -f $(brew --prefix httpd24)/homebrew.mxcl.httpd24.plist ] && sudo ln -sfv $(brew --prefix httpd24)/homebrew.mxcl.httpd24.plist /Library/LaunchDaemons/
+[ -e /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist ] && sudo chown root /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist
 [ -e /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist ] && sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist

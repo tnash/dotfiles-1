@@ -12,4 +12,5 @@ ln -sf $DOTFILES/conf/osx/dnsmasq/dnsmasq.conf $(brew --prefix)/etc/dnsmasq.conf
 
 # Create launch daemon and start dnsmasq
 [ -f $(brew --prefix dnsmasq)/homebrew.mxcl.dnsmasq.plist ] && sudo ln -sfv $(brew --prefix dnsmasq)/homebrew.mxcl.dnsmasq.plist /Library/LaunchDaemons/
+[ -e /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist ] && sudo chown root /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 [ -e /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist ] && sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
