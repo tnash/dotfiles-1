@@ -25,25 +25,32 @@ casks=(
   a-better-finder-rename
   alfred
   bettertouchtool
+  box-sync
   charles
+  codekit
   cyberduck
+  dash
   dropbox
+  duet
   evernote
   fastscripts
   filezilla
   firefox
+  firefoxdeveloperedition
   google-chrome
-  gyazo
   hex-fiend
   imageoptim
   istat-menus
+  jing
+  kindle
   launchbar
-  macvim
+  macdown
   mongohub
   moom
   omnidisksweeper
   omnifocus
   remote-desktop-connection
+  screenhero
   sequel-pro
   simpless
   slack

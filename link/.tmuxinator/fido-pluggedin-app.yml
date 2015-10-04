@@ -1,0 +1,13 @@
+# ~/.tmuxinator/fido-pluggedin-app.yml
+
+name: fido-pluggedin-web
+root: ~/Sites/fido/pluggedin/web
+
+windows:
+  - editor: vim
+  - tools:
+      layout: tiled
+      panes:
+        - grunt watch
+        - npm start
+        - ls

@@ -13,8 +13,12 @@ brew_tap_kegs
 
 # Homebrew recipes
 recipes=(
+  awscli
   bash
+  boot2docker
+  composer
   dnsmasq
+  docker
   duti
   git
   git-extras
@@ -26,6 +30,7 @@ recipes=(
   lesspipe
   mysql
   nmap
+  node
   npm
   pandoc
   php56

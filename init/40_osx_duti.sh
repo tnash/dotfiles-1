@@ -6,3 +6,4 @@ duti -s `bid Sublime` .md all
 duti -s `bid Sublime` .txt all
 duti -s `bid Sublime` .conf all
 duti -s `bid Sublime` .rb all
+duti -s `bid Sublime` .coffee all

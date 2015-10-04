@@ -20,6 +20,6 @@ do
 done
 
 # Clean up
-rm ~/.ssh/*.enc
+rm -rf ~/.ssh/*.enc
 
 cd $WD
