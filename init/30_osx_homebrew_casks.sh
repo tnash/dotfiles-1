@@ -27,6 +27,7 @@ casks=(
   bettertouchtool
   box-sync
   charles
+  chefdk
   codekit
   cyberduck
   dash
