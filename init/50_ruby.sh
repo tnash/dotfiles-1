@@ -18,4 +18,7 @@ fi
 # Install gems
 gem install bundler
 gem install builder
+chef gem install knife-ec2
+chef gem install knife-solo
+gem install knife-solo_data_bag
 gem install tmuxinator
