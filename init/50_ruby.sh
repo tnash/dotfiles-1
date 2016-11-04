@@ -1,9 +1,11 @@
-# Initialize rbenv.
-source $DOTFILES/source/50_ruby.sh
+# Configure and initialize rbenv
+rbenv init
+echo "eval \"$(rbenv init -)\"" >> ~/.zshrc
+$(eval "$(rbenv init -)")
 
-# Install Ruby.
+# Install Ruby
 if [[ "$(type -P rbenv)" ]]; then
-  versions=(2.2.2) # 2.0.0-p576 1.9.3-p547)
+  versions=(2.2.2)
 
   rubies=($(setdiff "${versions[*]}" "$(rbenv whence ruby)"))
   if (( ${#rubies[@]} > 0 )); then

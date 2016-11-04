@@ -5,10 +5,7 @@ is_osx || return 1
 [[ ! "$(type -P brew)" ]] && e_error "Brew casks need Homebrew to install." && return 1
 
 # Ensure the cask keg and recipe are installed.
-kegs=(
-  caskroom/cask
-  caskroom/versions
-)
+kegs=(caskroom/cask)
 brew_tap_kegs
 recipes=(brew-cask)
 brew_install_recipes
@@ -24,13 +21,13 @@ casks=(
   # Applications
   a-better-finder-rename
   alfred
-  bettertouchtool
   box-sync
   charles
   chefdk
   codekit
   cyberduck
   dash
+  divvy
   dropbox
   duet
   evernote
@@ -38,11 +35,12 @@ casks=(
   filezilla
   firefox
   firefoxdeveloperedition
+  flux
   google-chrome
   hex-fiend
   imageoptim
   istat-menus
-  jing
+  java
   kindle
   launchbar
   macdown
@@ -50,21 +48,24 @@ casks=(
   moom
   omnidisksweeper
   omnifocus
-  remote-desktop-connection
+  postico
   screenhero
   sequel-pro
   simpless
-  slack
   skype
+  slack
+  sonos
   sourcetree
   spotify
   sublime-text3
   the-unarchiver
+  thinkorswim
   utorrent
   vagrant
   virtualbox
   vlc
   vmware-horizon-view-client
+  whatsapp
 
   # Quick Look plugins
   betterzipql

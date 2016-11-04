@@ -1,6 +1,3 @@
-# OSX-only stuff. Abort if not OSX.
-#is_osx || return 1
-
 KEY_DIR=~/Dropbox/SSH\ Keys
 
 # Check if keys are available
