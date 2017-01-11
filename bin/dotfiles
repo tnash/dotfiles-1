@@ -301,6 +301,28 @@ if [[ ! "$(type -P git)" ]]; then
   exit 1
 fi
 
+# If Dropbox isn't installed, install it
+if [ ! -f ~/.dropbox-dist/dropboxd ] && is_ubuntu; then
+  e_header "Installing Dropbox"
+  sudo apt-get -qq install nautilus-dropbox
+
+  # Download the dropbox cli
+  mkdir -p ~/bin
+  wget -O ~/bin/dropbox.py "http://www.dropbox.com/download?dl=packages/dropbox.py"
+  chmod 755 ~/bin/dropbox.py
+
+  # Install dropbox daemon and start it
+  dropbox.py start -i 
+
+  # Start at boot
+  dropbox.py autostart y
+
+  # Wait for dropbox to finish syncing before continuing
+  while [ "$(dropbox.py status)" != "Up to date" ]; do
+    sleep 1
+  done
+fi
+
 # Initialize.
 if [[ ! -d $DOTFILES ]]; then
   # $DOTFILES directory doesn't exist? Clone it!
