@@ -46,6 +46,7 @@ sudo apt-get -qq dist-upgrade
 packages=(
   build-essential
   nodejs
+  tmux
 )
 
 packages=($(setdiff "${packages[*]}" "$(dpkg --get-selections | grep -v deinstall | awk '{print $1}')"))

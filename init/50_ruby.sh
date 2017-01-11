@@ -24,10 +24,4 @@ if [[ "$(type -P gem)" ]]; then
   gem install builder
   gem install knife-solo_data_bag
   gem install tmuxinator
-
-  # Install chef gems
-  if [[ "$(type -P chef)" ]]; then
-    chef gem install knife-ec2
-    chef gem install knife-solo
-  fi
 fi
