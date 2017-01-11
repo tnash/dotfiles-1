@@ -13,6 +13,7 @@ recipes=(
   git-extras
   icdiff
   lesspipe
+  nodejs
   rbenv
   ssh-copy-id
   tmux

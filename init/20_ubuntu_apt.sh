@@ -32,6 +32,11 @@ EOF
   fi
 fi
 
+# Setup nodejs
+if [[ ! "$(type -P node)" ]]; then
+  curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+fi
+
 # Update APT.
 e_header "Updating APT"
 sudo apt-get -qq update
@@ -40,17 +45,7 @@ sudo apt-get -qq dist-upgrade
 # Install APT packages.
 packages=(
   build-essential
-  cowsay
-  git-core
-  htop
-  id3tool
-  libssl-dev
-  mercurial
-  nmap
-  silversearcher-ag
-  sl
-  telnet
-  tree
+  nodejs
 )
 
 packages=($(setdiff "${packages[*]}" "$(dpkg --get-selections | grep -v deinstall | awk '{print $1}')"))
@@ -62,11 +57,4 @@ if (( ${#packages[@]} > 0 )); then
   done
 fi
 
-# Install Git Extras
-if [[ ! "$(type -P git-extras)" ]]; then
-  e_header "Installing Git Extras"
-  (
-    cd $DOTFILES/vendor/git-extras &&
-    sudo make install
-  )
-fi
+

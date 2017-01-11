@@ -302,7 +302,7 @@ if [[ ! "$(type -P git)" ]]; then
 fi
 
 # If Dropbox isn't installed, install it
-if [ ! -f ~/.dropbox-dist/dropboxd ] && is_ubuntu; then
+if [[ ! "$(type -P dropbox.py)" ]] && is_ubuntu; then
   e_header "Installing Dropbox"
   sudo apt-get -qq install nautilus-dropbox
 
@@ -318,6 +318,7 @@ if [ ! -f ~/.dropbox-dist/dropboxd ] && is_ubuntu; then
   dropbox.py autostart y
 
   # Wait for dropbox to finish syncing before continuing
+  e_header "Waiting for Dropbox to sync"
   while [ "$(dropbox.py status)" != "Up to date" ]; do
     sleep 1
   done
