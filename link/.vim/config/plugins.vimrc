@@ -91,4 +91,3 @@ command JDBSO :call eclim#java#debug#Step("over") | JavaDebugStatus
 command JDBSI :call eclim#java#debug#Step("into") | JavaDebugStatus
 command JDBSR :call eclim#java#debug#Step("return") | JavaDebugStatus
 
-source ~/.vim/regexlist.vim

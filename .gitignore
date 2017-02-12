@@ -2,8 +2,9 @@
 /caches/
 /backups/
 
-# Don't commit vim plugins
+# Don't commit vim plugins or sessions
 /link/.vim/plugged
+/link/.vim/session
 
 # Top secret stuff!
 /link/.ssh/authorized_keys
