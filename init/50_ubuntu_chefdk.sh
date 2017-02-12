@@ -1,3 +1,6 @@
+# Full installation only
+[ "$(get_install_type)" -lt "1" ] && return 1
+
 # Install chef-dk for Ubuntu
 is_ubuntu && curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -c current -P chefdk
 

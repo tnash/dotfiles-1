@@ -377,6 +377,9 @@ defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnab
 # Terminal & iTerm 2                                                          #
 ###############################################################################
 
+# Install Monokai theme
+open $DOTFILES/vendor/monokai.terminal/Monokai.terminal
+
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 

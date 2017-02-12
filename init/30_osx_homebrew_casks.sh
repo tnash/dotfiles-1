@@ -4,37 +4,37 @@ is_osx || return 1
 # Exit if Homebrew is not installed.
 [[ ! "$(type -P brew)" ]] && e_error "Brew casks need Homebrew to install." && return 1
 
-# Ensure the cask keg and recipe are installed.
-kegs=(caskroom/cask)
-brew_tap_kegs
-
 # Hack to show the first-run brew-cask password prompt immediately.
 brew cask info this-is-somewhat-annoying 2>/dev/null
 
-# Homebrew casks
-casks=(
-  # Applications
+l0=(
   1password
-  a-better-finder-rename
   alfred
+  divvy
+)
+
+# Homebrew casks
+l1=(
+
+  # Applications
+  a-better-finder-rename
   box-sync
   charles
   chefdk
   codekit
   cyberduck
   dash
-  divvy
   dropbox
   duet
   evernote
   fastscripts
   filezilla
   firefox
-  firefoxdeveloperedition
   flux
   google-chrome
   hex-fiend
   imageoptim
+  intellij-idea
   istat-menus
   java
   kindle
@@ -45,6 +45,7 @@ casks=(
   omnidisksweeper
   omnifocus
   postico
+  postman
   screenhero
   sequel-pro
   simpless
@@ -53,14 +54,13 @@ casks=(
   sonos
   sourcetree
   spotify
-  sublime-text3
+  sublime-text
   the-unarchiver
   thinkorswim
-  utorrent
   vagrant
   virtualbox
   vlc
-  vmware-horizon-view-client
+  vmware-horizon-client
   whatsapp
 
   # Quick Look plugins
@@ -78,15 +78,13 @@ casks=(
   colorpicker-skalacolor
 )
 
-# Install Homebrew casks.
-casks=($(setdiff "${casks[*]}" "$(brew cask list 2>/dev/null)"))
-if (( ${#casks[@]} > 0 )); then
-  e_header "Installing Homebrew casks: ${casks[*]}"
-  for cask in "${casks[@]}"; do
-    brew cask install $cask
-  done
-  brew cask cleanup
-fi
+# Compile array of casks to install based on installation level
+for i in $(seq "$(get_install_type)" -1 0); do
+  eval arr=("\${"l"$i[@]}")
+  casks=("${casks[@]}" "${arr[@]}")
+done
+
+brew_install_casks
 
 # Work around colorPicker symlink issue.
 # https://github.com/caskroom/homebrew-cask/issues/7004

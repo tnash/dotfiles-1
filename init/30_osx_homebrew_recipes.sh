@@ -5,21 +5,33 @@ is_osx || return 1
 [[ ! "$(type -P brew)" ]] && e_error "Brew recipes need Homebrew to install." && return 1
 
 # Homebrew recipes
-recipes=(
-  awscli
-  cocoapods
-  duti
+l0=(
+  cmake
   git
   git-extras
   icdiff
+  jq
   lesspipe
-  nodejs
-  rbenv
+  macvim
+  reattach-to-user-namespace
   ssh-copy-id
+  thefuck
   tmux
   tree
   wget
+)
+
+l1=(
+  awscli
+  cocoapods
+  nodejs
   zsh
 )
+
+# Compile array of casks to install based on installation level
+for i in $(seq "$(get_install_type)" -1 0); do
+  eval arr=("\${"l"$i[@]}")
+  recipes=("${recipes[@]}" "${arr[@]}")
+done
 
 brew_install_recipes

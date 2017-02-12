@@ -7,6 +7,11 @@ shopt -s checkwinsize
 
 export GREP_OPTIONS='--color=auto'
 
+# Recursive grep with colors
+function grepr() {
+  grep --color=always -R "$@" | less
+}
+
 # Prevent less from clearing the screen while still showing colors.
 export LESS=-XR
 
@@ -19,3 +24,7 @@ function titlebar() {
 if [[ -e ~/.ssh/known_hosts ]]; then
   complete -o default -W "$(cat ~/.ssh/known_hosts | sed 's/[, ].*//' | sort | uniq | grep -v '[0-9]')" ssh scp sftp
 fi
+
+# thefuck
+eval $(thefuck --alias)
+

@@ -1,3 +1,5 @@
+source $HOME/.vim/config/plugins.vimrc
+
 " Change mapleader
 let mapleader=","
 
@@ -8,24 +10,86 @@ nnoremap ; :
 nnoremap j gj
 nnoremap k gk
 
+nnoremap <leader>w :<C-u>Kwbd<cr>
+
+" Copy to OS clipboard
+set clipboard=unnamed
+set pastetoggle=<F10>
+
 " Local dirs
 set backupdir=$DOTFILES/caches/vim
 set directory=$DOTFILES/caches/vim
 set undodir=$DOTFILES/caches/vim
 let g:netrw_home = expand('$DOTFILES/caches/vim')
 
-" Theme / Syntax highlighting
-augroup color_scheme
-  autocmd!
-  " Make invisible chars less visible in terminal.
-  autocmd ColorScheme * :hi NonText ctermfg=236
-  autocmd ColorScheme * :hi SpecialKey ctermfg=236
-  " Show trailing whitespace.
-  autocmd ColorScheme * :hi ExtraWhitespace ctermbg=red guibg=red
-augroup END
-colorscheme molokai
+" --- BEGIN custom syntax and color highlighting ---
+" Ref: https://github.com/sentientmachine/erics_vim_syntax_and_color_highlighting
+syntax on
 set background=dark
+set hlsearch
+set nu
 
+set cursorline
+filetype on
+filetype plugin indent on
+
+au BufReadPost,BufNewFile *.twig colorscheme koehler 
+au BufReadPost,BufNewFile *.css colorscheme slate
+au BufReadPost,BufNewFile *.js colorscheme slate2
+au BufReadPost,BufNewFile *.py colorscheme molokaiyo
+au BufReadPost,BufNewFile *.html colorscheme monokai
+au BufReadPost,BufNewFile *.java colorscheme monokai
+" au BufReadPost,BufNewFile *.php colorscheme monokai
+
+" Default line highlighting for unknown filetypes
+hi String ctermfg=140
+hi CursorLine ctermbg=235
+hi CursorLine guibg=#D3D3D3 cterm=none
+
+"What follows are optional things, I like them
+
+"au BufNewFile,BufRead *.py 
+"        \ set tabstop=4 
+"        \ set shiftwidth=4     "aand fedora doesn't like this parameter, remove this line.
+"        \ set textwidth=79 
+"        \ set expandtab 
+"        \ set autoindent 
+"        \ set fileformat=unix
+
+" Commenting blocks of code.
+" This specifies the comment character when specifying block comments.
+"autocmd FileType c,cpp,java,scala let b:comment_leader = '//'
+"autocmd FileType sh,ruby,python   let b:comment_leader = '#'
+"autocmd FileType conf,fstab       let b:comment_leader = '#'
+"autocmd FileType tex              let b:comment_leader = '%'
+"autocmd FileType mail             let b:comment_leader = '>'
+"autocmd FileType vim              let b:comment_leader = '"'
+
+"this makes it so you can Shift-V highlight lots of text then press ,cc to
+"comment it or ,cu to uncomment.  
+"noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+"noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+"This mission critical workaround hack tells vim to restore cursor to the last line.
+"Be sure to set: "Thip, crinkle, sploit" to "stopit, just be right".  lolz
+"Also it could be the functionality is disabled in your /etc/vim/vimrc or 
+"your ~/.viminfo is owned by root.  
+"http://askubuntu.com/questions/223018/vim-is-not-remembering-last-position
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
+
+"These extra commands tell syntastic to ignore the following kinds of warnings                                                               
+"let g:syntastic_quiet_messages = { "regex": 'superfluous' }
+"let g:syntastic_quiet_messages = { "regex": 'superfluous-parens\|too-many-instance-attributes\|too-few-public-methods' }
+
+"I like the vertical bar on insert mode, others do not like.  You decide.
+"let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+"let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+
+" --- END custom syntax and color highlighting ---
+"
 " Visual settings
 set cursorline " Highlight current line
 set number " Enable line numbers.
@@ -45,8 +109,8 @@ augroup relative_numbers
 augroup END
 
 " Make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=+1
+" set textwidth=80
+" set colorcolumn=+1
 
 " Scrolling
 set scrolloff=3 " Start scrolling three lines before horizontal border of window.
@@ -56,8 +120,9 @@ set sidescrolloff=3 " Start scrolling three columns before vertical border of wi
 set autoindent " Copy indent from last line when starting new line.
 set shiftwidth=2 " The # of spaces for indenting.
 set smarttab " At start of line, <Tab> inserts shiftwidth spaces, <Bs> deletes shiftwidth spaces.
-set softtabstop=2 " Tab key results in 2 spaces
-set tabstop=2 " Tabs indent only 2 spaces
+set softtabstop=4 " Tab key results in 2 spaces
+set tabstop=4 " Tabs indent only 2 spaces
+set shiftwidth=4
 set expandtab " Expand tabs to spaces
 
 " Reformatting
@@ -191,49 +256,4 @@ augroup file_types
 
 augroup END
 
-" PLUGINS
 
-" Airline
-let g:airline_powerline_fonts = 1 " TODO: detect this?
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_format = '%s '
-let g:airline#extensions#tabline#buffer_nr_show = 1
-"let g:airline#extensions#tabline#fnamecollapse = 0
-"let g:airline#extensions#tabline#fnamemod = ':t'
-
-" NERDTree
-let NERDTreeShowHidden = 1
-let NERDTreeMouseMode = 2
-let NERDTreeMinimalUI = 1
-map <leader>n :NERDTreeToggle<CR>
-
-" Signify
-let g:signify_vcs_list = ['git', 'hg', 'svn']
-
-" CtrlP.vim
-map <leader>p <C-P>
-map <leader>r :CtrlPMRUFiles<CR>
-"let g:ctrlp_match_window_bottom = 0 " Show at top of window
-
-" Indent Guides
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-
-" https://github.com/junegunn/vim-plug
-" Reload .vimrc and :PlugInstall to install plugins.
-call plug#begin('~/.vim/plugged')
-Plug 'bling/vim-airline'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-unimpaired'
-Plug 'scrooloose/nerdtree'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'fatih/vim-go'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'pangloss/vim-javascript'
-Plug 'mhinz/vim-signify'
-call plug#end()

@@ -1,17 +1,7 @@
 # OSX-only stuff. Abort if not OSX.
 is_osx || return 1
 
-# Copy fonts
-{
-  pushd $DOTFILES/conf/osx/fonts/; setdiffA=(*); popd
-  pushd ~/Library/Fonts/; setdiffB=(*); popd
-  setdiff
-} >/dev/null
+pushd ~/Library/Fonts
+curl -fLso "Sauce Code Pro Medium Nerd Font Complete.ttf" "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Medium/complete/Sauce%20Code%20Pro%20Medium%20Nerd%20Font%20Complete.ttf?raw=true"
+popd
 
-if (( ${#setdiffC[@]} > 0 )); then
-  e_header "Copying fonts (${#setdiffC[@]})"
-  for f in "${setdiffC[@]}"; do
-    e_arrow "$f"
-    cp "$DOTFILES/conf/osx/fonts/$f" ~/Library/Fonts/
-  done
-fi

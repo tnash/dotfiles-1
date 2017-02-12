@@ -23,3 +23,7 @@ function dotfiles() {
 }
 
 src
+
+# Put dotfiles bin at beginning of path
+PATH=$DOTFILES/bin:$(path_remove $DOTFILES/bin)
+export PATH

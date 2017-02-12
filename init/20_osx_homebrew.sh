@@ -37,3 +37,15 @@ function brew_install_recipes() {
     done
   fi
 }
+
+# Install Homebrew casks.
+function brew_install_casks() {
+  casks=($(setdiff "${casks[*]}" "$(brew cask list 2>/dev/null)"))
+  if (( ${#casks[@]} > 0 )); then
+    e_header "Installing Homebrew casks: ${casks[*]}"
+    for cask in "${casks[@]}"; do
+      brew cask install $cask
+    done
+    brew cask cleanup
+  fi
+}

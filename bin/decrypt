@@ -13,15 +13,18 @@ HELP
 }
 
 function _decrypt() {
-echo $1
+
 # Show usage if no params
 if [ $# -eq 0 ]; then
   usage
   exit 1
 fi
 
-openssl enc -aes-256-cbc -d -in $1 | tar xz
-
+if [ -z "$2" ]; then
+  openssl enc -aes-256-cbc -d -in $1 | tar xz
+else
+  openssl enc -aes-256-cbc -d -in $1 -k "$2" | tar xz
+fi
 }
 
 # By putting the above code inside a function, if this file is sourced (which
