@@ -28,3 +28,17 @@ fi
 # thefuck
 eval $(thefuck --alias)
 
+# tmux
+function tmux_kill() { 
+  tmux kill-session -t "$1" 
+}
+function tmux_attach() { 
+  tmux attach -t "$1" 
+}
+alias tk="tmux_kill"
+alias tl="tmux ls"
+alias ta="tmux_attach"
+
+# eclim
+export PATH
+PATH="$(path_remove /Applications/Eclipse.app/Contents/Eclipse):/Applications/Eclipse.app/Contents/Eclipse"
