@@ -1,3 +1,15 @@
+" Change mapleader
+let mapleader=","
+
+" Now ; works just like : but with 866% less keypresses!
+nnoremap ; :
+
+" Move more naturally up/down when wrapping is enabled.
+nnoremap j gj
+nnoremap k gk
+
+nnoremap <leader>w :<C-u>Kwbd<cr>
+
 " Clear last search
 map <silent> <leader>/ <Esc>:nohlsearch<CR>
 
@@ -22,6 +34,19 @@ while c <= 99
   execute "nnoremap <silent> " . c . "gb :" . c . "b<CR>"
   let c += 1
 endwhile
+
+" Preview markdown
+let vim_markdown_preview_hotkey='<C-M>'
+let vim_markdown_preview_github=1
+
+" Trim extra whitespace (,ss)
+function! StripExtraWhiteSpace()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+endfunction
+noremap <leader>ss :call StripExtraWhiteSpace()<CR>
 
 " Fix page up and down
 map <PageUp> <C-U>
