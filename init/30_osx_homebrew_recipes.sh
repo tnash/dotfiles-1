@@ -7,12 +7,14 @@ is_osx || return 1
 # Homebrew recipes
 l0=(
   cmake
+  ctags
   git
   git-extras
   icdiff
   jq
   lesspipe
   macvim
+  maven
   reattach-to-user-namespace
   ssh-copy-id
   thefuck

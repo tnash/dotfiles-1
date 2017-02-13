@@ -33,6 +33,7 @@ l1=(
   flux
   google-chrome
   hex-fiend
+  hipchat
   imageoptim
   intellij-idea
   istat-menus
