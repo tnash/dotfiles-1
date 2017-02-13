@@ -28,34 +28,3 @@ if [[ "$(type -P rbenv)" ]]; then
     done
   fi
 fi
-
-#
-# Gems
-#
-
-if [[ "$(type -P gem)" ]]; then
-
-  l0=(
-    tmuxinator
-  )
-
-  l1=(
-    knife-solo_data_bag
-  )
-
-  # Compile array of gems to install based on installation level
-  for i in $(seq "$(get_install_type)" -1 0); do
-    eval arr=("\${"l"$i[@]}")
-    gems=("${gems[@]}" "${arr[@]}")
-  done
-
-  # Install gems
-  if (( ${#gems[@]} > 0 )); then
-    e_header "Installing gems: ${gems[*]}"
-    for gem in "${gems[@]}"; do
-      gem install "${gem}"
-    done
-  fi
-
-fi
-
