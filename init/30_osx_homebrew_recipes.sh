@@ -26,7 +26,9 @@ l0=(
 l1=(
   awscli
   cocoapods
+  mysql
   nodejs
+  the_silver_searcher
   zsh
 )
 
