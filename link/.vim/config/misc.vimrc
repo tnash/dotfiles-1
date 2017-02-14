@@ -10,6 +10,13 @@ set tabstop=2 " Tabs indent only 2 spaces
 set softtabstop=2 " Tab key results in 2 spaces
 set smarttab " At start of line, <Tab> inserts shiftwidth spaces, <Bs> deletes shiftwidth spaces.
 
+" Indentation for different file types
+au BufNewFile,BufRead *.java
+        \ set shiftwidth=4 |
+        \ set tabstop=4 |
+        \ set softtabstop=4 |
+        \ set expandtab
+
 " Reformatting
 set nojoinspaces " Only insert single space after a '.', '?' and '!' with a join command.
 
