@@ -2,6 +2,12 @@
 set clipboard=unnamed
 set pastetoggle=<F10>
 
+" Local dirs
+set backupdir=$DOTFILES/caches/vim
+set directory=$DOTFILES/caches/vim
+set undodir=$DOTFILES/caches/vim
+let g:netrw_home = expand('$DOTFILES/caches/vim')
+
 " Indentation
 set autoindent " Copy indent from last line when starting new line.
 set expandtab " Expand tabs to spaces
