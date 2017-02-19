@@ -1,16 +1,20 @@
 # Dotfiles
 
-My OSX / Ubuntu dotfiles.
+My OSX / Ubuntu dotfiles
 
 ## About this project
 
-I've been using bash on-and-off for a long time (since Slackware Linux was distributed on 1.44MB floppy disks). In all that time, every time I've set up a new Linux or OS X machine, I've copied over my `.bashrc` file and my `~/bin` folder to each machine manually. And I've never done a very good job of actually maintaining these files. It's been a total mess.
+I started with dotfiles by forking (Ben Alman's dotfiles)[https://github.com/cowboy/dotfiles], most of which I didn't understand at the time, but it was a great starting point. Since then, I've experimented and refactored some things to better fit my needs, the most notable changes being:
 
-I finally decided that I wanted to be able to execute a single command to "bootstrap" a new system to pull down all of my dotfiles and configs, as well as install all the tools I commonly use. In addition, I wanted to be able to re-execute that command at any time to synchronize anything that might have changed. Finally, I wanted to make it easy to re-integrate changes back in, so that other machines could be updated.
+- Dotfiles installation levels - the full dotfiles takes ages to install, so for cases where I just want a minimum setup to get up-and-running, I can select a subset of features. This could be useful for separating work form personal stuff as well.
+- vim plugins - I recently switched over to vim for pretty much everything, including Java development, which requires some extra plugins and dependencies
+- vimrc - My vimrc has been organized into different files
+- ssh keys - I want my ssh keys readily available, so I store my ssh key pairs in Dropbox (encrypted using openssl) and have a dotfiles init step that downloads the keys from Dropbox and decrypts them into the .ssh folder
 
-That command is [dotfiles][dotfiles], and this is my "dotfiles" Git repo.
+TODO:
+- Optionally symlink private stuff (tmuxinator sessions, etc) from Dropbox
 
-[dotfiles]: bin/dotfiles
+The rest of the following documentation is from Ben Alman -- I couldn't write it any better. :-)
 
 ## How the "dotfiles" command works
 
@@ -111,7 +115,7 @@ There's a lot of stuff that requires admin access via `sudo`, so be warned that 
 ### Actual installation (for me)
 
 ```sh
-bash -c "$(curl -fsSL https://bit.ly/cowboy-dotfiles)" && source ~/.bashrc
+bash -c "$(curl -fsSL http://go.stephenroberts.io/dotfiles)" && source ~/.bashrc
 ```
 
 ## Aliases and Functions
