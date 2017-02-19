@@ -16,6 +16,7 @@ l0=(
   lesspipe
   macvim
   maven
+  python
   reattach-to-user-namespace
   ssh-copy-id
   thefuck
@@ -28,7 +29,6 @@ l1=(
   awscli
   cocoapods
   mysql
-  nodejs
   the_silver_searcher
   zsh
 )

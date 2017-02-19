@@ -50,6 +50,7 @@ let g:signify_vcs_list = ['git', 'hg', 'svn']
 "let g:ctrlp_match_window_bottom = 0 " Show at top of window
 set wildignore+=*/build/**
 set wildignore+=*/target/**
+let g:ctrlp_show_hidden = 1
 
 " Indent Guides
 let g:indent_guides_start_level = 2

@@ -1,3 +1,6 @@
+# OSX-only stuff. Abort if not OSX.
+is_osx || return 1
+
 # Backups, swaps and undos are stored here.
 mkdir -p $DOTFILES/caches/vim
 

@@ -42,3 +42,6 @@ alias ta="tmux_attach"
 # eclim
 export PATH
 PATH="$(path_remove /Applications/Eclipse.app/Contents/Eclipse):/Applications/Eclipse.app/Contents/Eclipse"
+
+# python
+PATH=$PATH:$HOME/Library/Python/2.7/bin
