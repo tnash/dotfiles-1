@@ -5,16 +5,17 @@ mkdir -p $DOTFILES/caches/vim
 vim +PlugInstall +qall
 
 # Compile YouCompleteMe
-if [ ! -e ~/.vim/plugged/YouCompleteMe/python/ycm/youcompleteme.pyc ]; then
-  pushd ~/.vim/plugged/YouCompleteMe
-  ./install.py --clang-completer
-  popd
-fi
+# if [ ! -e ~/.vim/plugged/YouCompleteMe/python/ycm/youcompleteme.pyc ]; then
+#   pushd ~/.vim/plugged/YouCompleteMe
+#   ./install.py --clang-completer
+#   popd
+# fi
 
 if [ "$(get_install_type)" -gt "0" ]; then
 
   pushd $HOME
-  curl -SLO http://mirror.cc.columbia.edu/pub/software/eclipse/technology/epp/downloads/release/neon/2/eclipse-java-neon-2-linux-gtk-x86_64.tar.gz | tar -zxvf
+  curl -SLO http://mirror.cc.columbia.edu/pub/software/eclipse/technology/epp/downloads/release/neon/2/eclipse-java-neon-2-linux-gtk-x86_64.tar.gz
+  tar -zxvf *.tar.gz
   popd
 
   if [ ! -e $HOME/eclipse/eclim ]; then
