@@ -13,22 +13,18 @@ fi
 
 if [ "$(get_install_type)" -gt "0" ]; then
 
-  # The download is currently corrupt...install manually
+  pushd $HOME
+  curl -SLO http://mirror.cc.columbia.edu/pub/software/eclipse/technology/epp/downloads/release/neon/2/eclipse-java-neon-2-linux-gtk-x86_64.tar.gz | tar -zxvf
+  popd
 
-  # pushd /tmp
-  # curl -so "eclipse.tar.gz" "https://www.eclipse.org/downloads/download.php?file=/oomph/epp/neon/R2a/eclipse-inst-linux64.tar.gz"
-  # tar -zxvf eclipse.tar.gz
-  # eclipse-installer/eclipse-inst
-  # popd
-
-  if [ ! -e $HOME/java-neon/eclipse/eclim ]; then
+  if [ ! -e $HOME/eclipse/eclim ]; then
 
     # Install eclim
     pushd /tmp
     wget "https://github.com/ervandew/eclim/releases/download/2.6.0/eclim_2.6.0.jar"
     java \
       -Dvim.files=$HOME/.vim \
-      -Declipse.home=$HOME/java-neon/eclipse \
+      -Declipse.home=$HOME/eclipse \
       -jar eclim_2.6.0.jar install
     popd
   fi
