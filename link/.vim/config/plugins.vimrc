@@ -75,4 +75,8 @@ let g:indentLine_color_gui = '#09AA08'
 let g:indentLine_char = '│'
 let g:indentLine_faster = 1
 
+" Preview markdown
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_github=1
+let vim_markdown_preview_browser='Google Chrome'
 

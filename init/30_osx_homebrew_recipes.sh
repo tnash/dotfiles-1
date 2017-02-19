@@ -10,6 +10,7 @@ l0=(
   ctags
   git
   git-extras
+  grip
   icdiff
   jq
   lesspipe

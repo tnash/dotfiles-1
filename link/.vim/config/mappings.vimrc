@@ -35,10 +35,6 @@ while c <= 99
   let c += 1
 endwhile
 
-" Preview markdown
-let vim_markdown_preview_hotkey='<C-M>'
-let vim_markdown_preview_github=1
-
 " Trim extra whitespace (,ss)
 function! StripExtraWhiteSpace()
   let l = line(".")
