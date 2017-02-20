@@ -38,6 +38,7 @@ l1=(
   intellij-idea
   istat-menus
   java
+  karabiner-elements
   kindle
   launchbar
   macdown
