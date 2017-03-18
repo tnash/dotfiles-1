@@ -2,17 +2,14 @@
 
 function _sshkeygen() {
 
-WD=`pwd`
+  # Encrypt key and save in dropbox
+  KEY=$(/usr/bin/ssh-keygen $@ | awk 'NR==2' | sed -e 's/Your identification has been saved in //g' | rev | cut -c 2- | rev)
+  KEY=$(basename $KEY)
 
-# Encrypt key and save in dropbox
-KEY=$(/usr/bin/ssh-keygen $@ | awk 'NR==2' | sed -e 's/Your identification has been saved in //g' | rev | cut -c 2- | rev)
-KEY=$(basename $KEY)
-
-cd ~/.ssh
-encrypt $KEY $KEY.pub
-mv $KEY.enc ~/Dropbox/dotfiles/ssh_keys
-
-cd $WD
+  pushd ~/.ssh
+  encrypt $KEY $KEY.pub
+  mv $KEY.enc ~/Dropbox/dotfiles/ssh_keys
+  popd
 
 }
 
