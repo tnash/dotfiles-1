@@ -1,9 +1,8 @@
 # Where the magic happens.
-export DOTFILES=~/.dotfiles
+export DOTFILES=$HOME/.dotfiles
 
 # Add binaries into the path
-PATH=$DOTFILES/bin:$PATH
-export PATH
+export PATH=$DOTFILES/bin:$PATH
 
 # Source all files in "source"
 function src() {
@@ -24,6 +23,4 @@ function dotfiles() {
 
 src
 
-# Put dotfiles bin at beginning of path
-PATH=$DOTFILES/bin:$(path_remove $DOTFILES/bin)
-export PATH
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

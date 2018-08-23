@@ -2,7 +2,7 @@
 is_osx || return 1
 
 # Exit if Homebrew is not installed.
-[[ ! "$(type -P brew)" ]] && e_error "Brew casks need Homebrew to install." && return 1
+[[ ! "$(type -p brew)" ]] && e_error "Brew casks need Homebrew to install." && return 1
 
 # Hack to show the first-run brew-cask password prompt immediately.
 brew cask info this-is-somewhat-annoying 2>/dev/null
@@ -17,56 +17,20 @@ l0=(
 l1=(
 
   # Applications
-  a-better-finder-rename
-  box-sync
-  charles
-  chefdk
-  codekit
-  cyberduck
   dash
   dropbox
-  duet
   evernote
-  fastscripts
-  filezilla
-  firefox
-  flux
   google-chrome
-  hex-fiend
-  hipchat
-  imageoptim
-  intellij-idea
-  istat-menus
-  java
   karabiner-elements
-  kindle
-  launchbar
-  macdown
-  mongohub
-  moom
-  omnidisksweeper
-  omnifocus
-  postico
   postman
-  screenhero
-  sequel-pro
-  simpless
-  skype
   slack
-  sonos
   sourcetree
   spotify
   sublime-text
-  the-unarchiver
-  thinkorswim
-  vagrant
   virtualbox
-  vlc
-  vmware-horizon-client
   whatsapp
 
   # Quick Look plugins
-  betterzipql
   qlcolorcode
   qlmarkdown
   qlprettypatch

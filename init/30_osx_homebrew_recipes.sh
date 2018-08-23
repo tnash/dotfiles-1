@@ -2,7 +2,7 @@
 is_osx || return 1
 
 # Exit if Homebrew is not installed.
-[[ ! "$(type -P brew)" ]] && e_error "Brew recipes need Homebrew to install." && return 1
+[[ ! "$(type -p brew)" ]] && e_error "Brew recipes need Homebrew to install." && return 1
 
 # Homebrew recipes
 l0=(
@@ -10,27 +10,23 @@ l0=(
   ctags
   git
   git-extras
-  grip
   icdiff
   jq
+  jsonlint
   lesspipe
   macvim
-  maven
   python
-  reattach-to-user-namespace
   ssh-copy-id
+  the_silver_searcher
   thefuck
   tmux
   tree
   wget
+  zsh
 )
 
 l1=(
   awscli
-  cocoapods
-  mysql
-  the_silver_searcher
-  zsh
 )
 
 # Compile array of casks to install based on installation level
