@@ -11,6 +11,7 @@ l0=(
   1password
   alfred
   divvy
+  iterm2
 )
 
 # Homebrew casks
