@@ -11,6 +11,7 @@ l0=(
   fzf
   git
   git-extras
+  grip
   icdiff
   jq
   jsonlint
