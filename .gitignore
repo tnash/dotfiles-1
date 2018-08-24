@@ -18,5 +18,9 @@
 /link/.rbenv/versions/
 /link/.rbenv/version
 
+# Only track karabiner in .config
+/link/.config/*
+!/link/.config/karabiner
+
 # Ignore any file with LOCAL in the name (good for per-machine vars/functions)
 *LOCAL*
