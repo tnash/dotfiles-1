@@ -17,6 +17,7 @@ l0=(
   lesspipe
   macvim
   python
+  rbenv
   ssh-copy-id
   the_silver_searcher
   thefuck
