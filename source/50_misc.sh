@@ -51,3 +51,6 @@ fi
 # thefuck
 [[ "$(type -p fuck)" ]] && eval $(thefuck --alias)
 
+# Wtf aren't these in my path already???
+export PATH=$PATH:$HOME/Library/Python/2.7/bin
+
