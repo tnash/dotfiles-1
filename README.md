@@ -2,156 +2,37 @@
 
 My OSX / Ubuntu dotfiles
 
-## About this project
+## Features
 
-I started with dotfiles by forking (Ben Alman's dotfiles)[https://github.com/cowboy/dotfiles], most of which I didn't understand at the time, but it was a great starting point. Since then, I've experimented and refactored some things to better fit my needs, the most notable changes being:
+- Easy install (`bash -c "$(curl -fsSL http://go.stephenroberts.io/dotfiles)" && source ~/.bashrc` for me)
+- Multiple installation levels: get up-and-running quickly or enjoy the full
+  feature set
+- Selectable features
+- Installs and configures tools/apps:
+  - [homebrew](https://brew.sh)
+  - [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) - zsh
+  - [fzf](https://github.com/junegunn/fzf) - fuzzy everything for shell and vim
+  - [iterm2](https://iterm2.com) - terminal emulator
+  - [nave](https://github.com/isaacs/nave) - nodejs version manager
+  - [rbenv](https://github.com/rbenv/rbenv) - ruby version manager
+  - [vim](https://github.com/macvim-dev/macvim) - the only real editor
+  - [tmux](https://github.com/tmux/tmux) - tmux + vim = ide
+  - [powerline](https://powerline.readthedocs.io/en/master/) - status line for zsh and tmux
+  - many more! [recipes](init/30_osx_homebrew_recipes.sh),
+    [casks](init/30_osx_homebrew_casks.sh)
+- Downloads, decrypts, and installs ssh keys from Dropbox
 
-- Dotfiles installation levels - the full dotfiles takes ages to install, so for cases where I just want a minimum setup to get up-and-running, I can select a subset of features. This could be useful for separating work form personal stuff as well.
-- vim plugins - I recently switched over to vim for pretty much everything, including Java development, which requires some extra plugins and dependencies
-- vimrc - My vimrc has been organized into different files
-- ssh keys - I want my ssh keys readily available, so I store my ssh key pairs in Dropbox (encrypted using openssl) and have a dotfiles init step that downloads the keys from Dropbox and decrypts them into the .ssh folder
+## Overview
 
-TODO:
-- Optionally symlink private stuff (tmuxinator sessions, etc) from Dropbox
+My dotfiles were originally forked from [Ben Alman's
+dotfiles](https://github.com/cowboy/dotfiles), most of which I didn't understand
+at the time, but it was a great starting point, and I like the framework he
+created for installing and managing dotfiles. Since then I've gone through a
+couple of major rewrites where I added things like multiple installation levels
+and fetching ssh keys from Dropbox. Most recently I cleaned up everything I did
+not use or like and rewrote my shell, tmux, and vim configs. I finally consider
+the dotfiles to be my own, based on Ben Alman's framework.
 
-The rest of the following documentation is from Ben Alman -- I couldn't write it any better. :-)
+For details on how the framework works, refer to [Ben Alman's
+dotfiles](https://github.com/cowboy/dotfiles).
 
-## How the "dotfiles" command works
-
-When [dotfiles][dotfiles] is run for the first time, it does a few things:
-
-1. In Ubuntu, Git is installed if necessary via APT (it's already there in OSX).
-1. This repo is cloned into your user directory, under `~/.dotfiles`.
-1. Files in `/copy` are copied into `~/`. ([read more](#the-copy-step))
-1. Files in `/link` are symlinked into `~/`. ([read more](#the-link-step))
-1. You are prompted to choose scripts in `/init` to be executed. The installer attempts to only select relevant scripts, based on the detected OS and the script filename.
-1. Your chosen init scripts are executed (in alphanumeric order, hence the funky names). ([read more](#the-init-step))
-
-On subsequent runs, step 1 is skipped, step 2 just updates the already-existing repo, and step 5 remembers what you selected the last time. The other steps are the same.
-
-### Other subdirectories
-
-* The `/backups` directory gets created when necessary. Any files in `~/` that would have been overwritten by files in `/copy` or `/link` get backed up there.
-* The `/bin` directory contains executable shell scripts (including the [dotfiles][dotfiles] script) and symlinks to executable shell scripts. This directory is added to the path.
-* The `/caches` directory contains cached files, used by some scripts or functions.
-* The `/conf` directory just exists. If a config file doesn't **need** to go in `~/`, reference it from the `/conf` directory.
-* The `/source` directory contains files that are sourced whenever a new shell is opened (in alphanumeric order, hence the funky names).
-* The `/test` directory contains unit tests for especially complicated bash functions.
-* The `/vendor` directory contains third-party libraries.
-
-### The "copy" step
-Any file in the `/copy` subdirectory will be copied into `~/`. Any file that _needs_ to be modified with personal information (like [copy/.gitconfig](copy/.gitconfig) which contains an email address and private key) should be _copied_ into `~/`. Because the file you'll be editing is no longer in `~/.dotfiles`, it's less likely to be accidentally committed into your public dotfiles repo.
-
-### The "link" step
-Any file in the `/link` subdirectory gets symlinked into `~/` with `ln -s`. Edit one or the other, and you change the file in both places. Don't link files containing sensitive data, or you might accidentally commit that data! If you're linking a directory that might contain sensitive data (like `~/.ssh`) add the sensitive files to your [.gitignore](.gitignore) file!
-
-### The "init" step
-Scripts in the `/init` subdirectory will be executed. A whole bunch of things will be installed, but _only_ if they aren't already.
-
-#### OS X
-
-* Minor XCode init via the [init/10_osx_xcode.sh](init/10_osx_xcode.sh) script
-* Homebrew via the [init/20_osx_homebrew.sh](init/20_osx_homebrew.sh) script
-* Homebrew recipes via the [init/30_osx_homebrew_recipes.sh](init/30_osx_homebrew_recipes.sh) script
-* Homebrew casks via the [init/30_osx_homebrew_casks.sh](init/30_osx_homebrew_casks.sh) script
-* [Fonts](/cowboy/dotfiles/tree/master/conf/osx/fonts) via the [init/50_osx_fonts.sh](init/50_osx_fonts.sh) script
-
-#### Ubuntu
-* APT packages and git-extras via the [init/20_ubuntu_apt.sh](init/20_ubuntu_apt.sh) script
-
-#### Both
-* Node.js, npm and nave via the [init/50_node.sh](init/50_node.sh) script
-* Ruby, gems and rbenv via the [init/50_ruby.sh](init/50_ruby.sh) script
-* Vim plugins via the [init/50_vim.sh](init/50_vim.sh) script
-
-## Hacking my dotfiles
-
-Because the [dotfiles][dotfiles] script is completely self-contained, you should be able to delete everything else from your dotfiles repo fork, and it will still work. The only thing it really cares about are the `/copy`, `/link` and `/init` subdirectories, which will be ignored if they are empty or don't exist.
-
-If you modify things and notice a bug or an improvement, [file an issue](https://github.com/cowboy/dotfiles/issues) or [a pull request](https://github.com/cowboy/dotfiles/pulls) and let me know.
-
-Also, before installing, be sure to [read my gently-worded note](#heed-this-critically-important-warning-before-you-install).
-
-## Installation
-
-### OS X Notes
-
-You need to have [XCode](https://developer.apple.com/downloads/index.action?=xcode) or, at the very minimum, the [XCode Command Line Tools](https://developer.apple.com/downloads/index.action?=command%20line%20tools), which are available as a much smaller download.
-
-The easiest way to install the XCode Command Line Tools in OSX 10.9+ is to open up a terminal, type `xcode-select --install` and [follow the prompts](http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/).
-
-_Tested in OSX 10.10_
-
-### Ubuntu Notes
-
-You might want to set up your ubuntu server [like I do it](https://github.com/cowboy/dotfiles/wiki/ubuntu-setup), but then again, you might not.
-
-Either way, you should at least update/upgrade APT with `sudo apt-get -qq update && sudo apt-get -qq dist-upgrade` first.
-
-_Tested in Ubuntu 14.04 LTS_
-
-### Heed this critically important warning before you install
-
-**If you're not me, please _do not_ install dotfiles directly from this repo!**
-
-Why? Because I often completely break this repo while updating. Which means that if I do that and you run the `dotfiles` command, your home directory will burst into flames, and you'll have to go buy a new computer. No, not really, but it will be very messy.
-
-### Actual installation (for you)
-
-1. [Read my gently-worded note](#heed-this-critically-important-warning-before-you-install)
-1. Fork this repo
-1. Open a terminal/shell and do this:
-
-```sh
-export github_user=YOUR_GITHUB_USER_NAME
-
-bash -c "$(curl -fsSL https://raw.github.com/$github_user/dotfiles/master/bin/dotfiles)" && source ~/.bashrc
-```
-
-Since you'll be using the [dotfiles][dotfiles] command on subsequent runs, you'll only have to export the `github_user` variable for the initial install.
-
-There's a lot of stuff that requires admin access via `sudo`, so be warned that you might need to enter your password here or there.
-
-### Actual installation (for me)
-
-```sh
-bash -c "$(curl -fsSL http://go.stephenroberts.io/dotfiles)" && source ~/.bashrc
-```
-
-## Aliases and Functions
-To keep things easy, the `~/.bashrc` and `~/.bash_profile` files are extremely simple, and should never need to be modified. Instead, add your aliases, functions, settings, etc into one of the files in the `source` subdirectory, or add a new file. They're all automatically sourced when a new shell is opened. Take a look, I have [a lot of aliases and functions](source). I even have a [fancy prompt](source/50_prompt.sh) that shows the current directory, time and current git/svn repo status.
-
-## Scripts
-In addition to the aforementioned [dotfiles][dotfiles] script, there are a few other [bin scripts](bin). This includes [nave](https://github.com/isaacs/nave), which is a [git submodule](vendor).
-
-* [dotfiles][dotfiles] - (re)initialize dotfiles. It might ask for your password (for `sudo`).
-* [src](link/.bashrc#L8-18) - (re)source all files in `/source` directory
-* Look through the [bin](bin) subdirectory for a few more.
-
-## Prompt
-I think [my bash prompt](source/50_prompt.sh) is awesome. It shows git and svn repo status, a timestamp, error exit codes, and even changes color depending on how you've logged in.
-
-Git repos display as **[branch:flags]** where flags are:
-
-**?** untracked files  
-**!** changed (but unstaged) files  
-**+** staged files
-
-SVN repos display as **[rev1:rev2]** where rev1 and rev2 are:
-
-**rev1** last changed revision  
-**rev2** revision
-
-Check it out:
-
-![My awesome bash prompt](http://farm8.staticflickr.com/7142/6754488927_563dd73553_b.jpg)
-
-## Inspiration
-<https://github.com/gf3/dotfiles>  
-<https://github.com/mathiasbynens/dotfiles>  
-(and 15+ years of accumulated crap)
-
-## License
-Copyright (c) 2014 "Cowboy" Ben Alman  
-Licensed under the MIT license.  
-<http://benalman.com/about/license/>
