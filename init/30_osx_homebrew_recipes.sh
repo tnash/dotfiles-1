@@ -8,6 +8,7 @@ is_osx || return 1
 l0=(
   cmake
   ctags
+  fzf
   git
   git-extras
   icdiff
