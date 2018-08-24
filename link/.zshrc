@@ -98,6 +98,10 @@ plugins=(
   vi-mode
 )
 
+# Fix issue with tab completions
+# https://github.com/robbyrussell/oh-my-zsh/issues/6835#issuecomment-390216875
+ZSH_DISABLE_COMPFIX=true
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
