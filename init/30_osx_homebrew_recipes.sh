@@ -19,6 +19,7 @@ l0=(
   macvim
   python
   rbenv
+  rbenv-default-gems
   ssh-copy-id
   the_silver_searcher
   thefuck

@@ -9,6 +9,9 @@ if [[ "$(type -p rbenv)" ]]; then
   source $HOME/.bash_profile
 fi
 
+# Set default gems to install
+printf "tmuxinator" > $(rbenv root)/default-gems
+
 # Ruby versions to install
 latest=$(rbenv install -l | grep '^\s*\d\+\.\d\+\.\d\+$' | tail -n 1 | xargs)
 versions=( $latest )
