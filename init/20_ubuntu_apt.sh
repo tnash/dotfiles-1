@@ -41,4 +41,4 @@ if (( ${#packages[@]} > 0 )); then
   done
 fi
 
-sudo -H pip3 install thefuck
+sudo -H pip3 install thefudge

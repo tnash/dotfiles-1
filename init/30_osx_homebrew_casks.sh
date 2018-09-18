@@ -28,6 +28,7 @@ l1=(
   sourcetree
   spotify
   sublime-text
+  textmate
   virtualbox
   whatsapp
 

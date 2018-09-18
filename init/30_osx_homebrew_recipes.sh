@@ -22,7 +22,7 @@ l0=(
   rbenv-default-gems
   ssh-copy-id
   the_silver_searcher
-  thefuck
+  thefudge
   tmux
   tree
   wget

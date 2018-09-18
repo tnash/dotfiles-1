@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 [[ "$1" == "source" ]] || \
 
-echo 'Dotfiles - Stephen Roberts'
+echo 'Dotfiles - Todd Nash'
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then cat <<HELP
 
 Usage: $(basename "$0")
 
 See the README for documentation.
-https://github.com/stephencroberts/dotfiles
+https://github.com/tnash/dotfiles-1
 
-Copyright (c) 2015 Stephen Roberts
+Copyright (c) 2018 Todd Nash
 Licensed under the MIT license.g
 HELP
 exit; fi
@@ -294,7 +294,8 @@ if [[ ! -d $DOTFILES ]]; then
   new_dotfiles_install=1
   prompt_delay=15
   e_header "Downloading dotfiles"
-  git clone --recursive git://github.com/${github_user:-stephencroberts}/dotfiles.git $DOTFILES
+  git clone --recursive git://github.com/${github_user:-tnash}/dotfiles-1.git $DOTFILES
+  git clone --recursive https://github.com/tnash/dotfiles-1.git $DOTFILES
   cd $DOTFILES
 elif [[ "$1" != "restart" ]]; then
   # Make sure we have the latest files.

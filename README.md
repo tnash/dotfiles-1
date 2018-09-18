@@ -4,7 +4,7 @@ My OSX / Ubuntu dotfiles
 
 ## Features
 
-- Easy install (`bash -c "$(curl -fsSL http://go.stephenroberts.io/dotfiles)" && source ~/.bashrc` for me)
+- Easy install clone the repo, navigate to the repo base directory and run ./bin/dotfiles
 - Multiple installation levels: get up-and-running quickly or enjoy the full
   feature set
 - Selectable features
