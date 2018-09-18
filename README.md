@@ -36,3 +36,7 @@ the dotfiles to be my own, based on Ben Alman's framework.
 For details on how the framework works, refer to [Ben Alman's
 dotfiles](https://github.com/cowboy/dotfiles).
 
+## TODO
+Add a link to mate to run TextMate from command line:
+ln -s /Applications/TextMate.app/Contents/Resources/mate ~/bin/mate
+
