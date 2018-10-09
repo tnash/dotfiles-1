@@ -16,7 +16,6 @@ l0=(
   jq
   jsonlint
   lesspipe
-  macvim
   python
   rbenv
   rbenv-default-gems
@@ -25,6 +24,7 @@ l0=(
   thefuck
   tmux
   tree
+  vim
   wget
   zsh
 )
@@ -33,7 +33,7 @@ l1=(
   awscli
 )
 
-# Compile array of casks to install based on installation level
+# Compile array of recipes to install based on installation level
 for i in $(seq "$(get_install_type)" -1 0); do
   eval arr=("\${"l"$i[@]}")
   recipes=("${recipes[@]}" "${arr[@]}")
