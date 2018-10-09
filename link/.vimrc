@@ -47,6 +47,7 @@ nmap <leader>b :Buffers<CR>
 nmap <leader>g :GitGutterToggle<CR>
 
 
+
 """""""""""
 " General "
 """""""""""
@@ -93,6 +94,9 @@ nnoremap <leader>w :q<CR>
 nnoremap <leader>d :bd<CR>
 nnoremap <leader>n :nohlsearch<CR>
 nnoremap <leader>e :Explore<CR>
+
+" ctags
+nnoremap <leader>m :!ctags -R .<CR>
 
 " Trim trailing whitespace with <leader><space>
 function! Strip_trailing()
