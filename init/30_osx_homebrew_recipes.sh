@@ -19,6 +19,7 @@ l0=(
   python
   rbenv
   rbenv-default-gems
+  shellcheck
   ssh-copy-id
   the_silver_searcher
   thefuck

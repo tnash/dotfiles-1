@@ -19,10 +19,12 @@ l1=(
 
   # Applications
   dash
+  docker
   dropbox
   evernote
   google-chrome
   karabiner-elements
+  nextcloud
   postman
   slack
   sourcetree
