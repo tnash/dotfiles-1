@@ -98,6 +98,9 @@ nnoremap <leader>e :Explore<CR>
 " ctags
 nnoremap <leader>m :!ctags -R .<CR>
 
+" pretty json
+nnoremap <leader>p :%!python -m json.tool<CR>
+
 " Trim trailing whitespace with <leader><space>
 function! Strip_trailing()
   let previous_search=@/
