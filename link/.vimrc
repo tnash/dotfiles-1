@@ -38,6 +38,9 @@ endif
 
 " nercommenter
 filetype plugin on
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
 
 " fzf
 nmap <leader>t :FZF<CR>
@@ -45,6 +48,7 @@ nmap <leader>b :Buffers<CR>
 
 " vim-gitgutter
 nmap <leader>g :GitGutterToggle<CR>
+
 
 
 """""""""""
@@ -93,6 +97,12 @@ nnoremap <leader>w :q<CR>
 nnoremap <leader>d :bd<CR>
 nnoremap <leader>n :nohlsearch<CR>
 nnoremap <leader>e :Explore<CR>
+
+" ctags
+nnoremap <leader>m :!ctags -R .<CR>
+
+" pretty json
+nnoremap <leader>p :%!python -m json.tool<CR>
 
 " Trim trailing whitespace with <leader><space>
 function! Strip_trailing()
